@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
+[RequireComponent(typeof(Text))]
 public sealed class MoneyUIPresenter : MonoBehaviour
 {
     [SerializeField] private string _format = "Money: {0}";
 
-    private TextMeshProUGUI _text;
+    private Text _text;
     private MoneyInteractor _money;
 
     private void Awake()
     {
-        _text = GetComponent<TextMeshProUGUI>();
+        _text = GetComponent<Text>();
         _money = Game.GetInteractor<MoneyInteractor>();
     }
     private void Start()
