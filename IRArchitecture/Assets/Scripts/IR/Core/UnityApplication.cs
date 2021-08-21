@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-namespace IRArchitecture
+namespace IRCore
 {
-    public class UnityApplication : MonoBehaviour
+    class UnityApplication : MonoBehaviour
     {
-        public static UnityApplication CreateHandler()
+        public static UnityApplication CreateApplicationObject()
         {
             var application = FindObjectOfType<UnityApplication>(true);
             if (application != null)

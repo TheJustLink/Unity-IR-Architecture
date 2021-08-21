@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using IRCore;
+
 public class Player : MonoBehaviour
 {
     [Header("Parameters")]

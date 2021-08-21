@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+using IRCore;
+
 [RequireComponent(typeof(Text))]
 public sealed class MoneyUIPresenter : MonoBehaviour
 {

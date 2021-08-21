@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace IRArchitecture
+namespace IRCore.Tables
 {
-    public class InitializableTable<T> : IEnumerable<T> where T : IInitializable
+    abstract class TypeTable<T> : IEnumerable<T>
     {
         private Dictionary<Type, T> _table = new Dictionary<Type, T>();
 
@@ -19,12 +19,16 @@ namespace IRArchitecture
         private U Create<U>() where U : T, new()
         {
             var type = typeof(U);
-            var initializable = new U();
+            var value = CreateValue<U>();
 
-            _table.Add(type, initializable);
-            initializable.Initialize();
+            _table.Add(type, value);
 
-            return initializable;
+            return value;
+        }
+
+        protected virtual U CreateValue<U>() where U : T, new()
+        {
+            return new U();
         }
 
         public IEnumerator<T> GetEnumerator()
