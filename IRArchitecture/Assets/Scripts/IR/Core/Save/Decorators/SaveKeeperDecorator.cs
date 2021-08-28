@@ -9,10 +9,20 @@
             _saveKeeper = saveKeeper;
         }
 
-        public bool Exist(string key)
+        public virtual bool Exist(string key)
         {
             return _saveKeeper.Exist(key);
         }
+
+        public virtual void Clear()
+        {
+            _saveKeeper.Clear();
+        }
+        public virtual void Remove(string key)
+        {
+            _saveKeeper.Remove(key);
+        }
+
         public virtual string Load(string key)
         {
             return _saveKeeper.Load(key);

@@ -1,4 +1,4 @@
 ﻿namespace IRCore.Tables
 {
-    sealed class InteractorsTable : InitializableTable<IInteractor> { }
+    sealed class InteractorsTable : TypeTable<IInteractor> { }
 }

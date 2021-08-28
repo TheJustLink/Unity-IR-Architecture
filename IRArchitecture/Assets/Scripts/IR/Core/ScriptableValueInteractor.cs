@@ -2,12 +2,16 @@
 
 namespace IRCore
 {
-    class ScriptableValueInteractor<I, R, V> : ScriptableObject where R : ValueRepository<V>, new() where I : ValueInteractor<V, R>, new()
+    class ScriptableValueInteractor<I, R, V> : ScriptableObject where R : ValueRepository<V>, new() where I : ValueInteractor<R, V>, new()
     {
         public I Interactor
             => _interactor ??= Game.GetInteractor<I>();
         private I _interactor;
 
+        /// <summary>
+        /// Use OdinInspector to draw properties in inspector
+        /// or custom drawer (current SerializeProperty)
+        /// </summary>
         public V Value
         {
             get => Interactor.Value;

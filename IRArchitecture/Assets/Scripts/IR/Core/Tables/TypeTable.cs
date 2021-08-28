@@ -6,7 +6,7 @@ namespace IRCore.Tables
 {
     abstract class TypeTable<T> : IEnumerable<T>
     {
-        private Dictionary<Type, T> _table = new Dictionary<Type, T>();
+        private readonly Dictionary<Type, T> _table = new Dictionary<Type, T>();
 
         public U Get<U>() where U : T, new()
         {

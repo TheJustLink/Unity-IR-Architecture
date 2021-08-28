@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace IRCore.Encryption
 {
-    static class RijndaelEncryption
+    class RijndaelEncryption
     {
         // This constant is used to determine the keysize of the encryption algorithm in bits.
         // We divide this by 8 within the code below to get the equivalent number of bytes.
@@ -15,7 +15,18 @@ namespace IRCore.Encryption
         // This constant determines the number of iterations for the password bytes generation function.
         private const int DerivationIterations = 500;
 
-        public static string Encrypt(string text, string password)
+        private readonly string _password;
+
+        public RijndaelEncryption(string password)
+        {
+            _password = password;
+        }
+
+        public string Encrypt(string text)
+        {
+            return Encrypt(text, _password);
+        }
+        public string Encrypt(string text, string password)
         {
             var saltStringBytes = Generate256BitsOfRandomEntropy();
             var ivStringBytes = Generate256BitsOfRandomEntropy();
@@ -42,7 +53,12 @@ namespace IRCore.Encryption
 
             return Convert.ToBase64String(cipherTextBytes);
         }
-        public static string Decrypt(string encodedText, string password)
+
+        public string Decrypt(string encodedText)
+        {
+            return Decrypt(encodedText, _password);
+        }
+        public string Decrypt(string encodedText, string password)
         {
             var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(encodedText);
 
@@ -68,7 +84,7 @@ namespace IRCore.Encryption
             return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
         }
 
-        private static byte[] Generate256BitsOfRandomEntropy()
+        private byte[] Generate256BitsOfRandomEntropy()
         {
             var randomBytes = new byte[32];
 

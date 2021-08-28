@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections;
+
 using UnityEngine;
 
 namespace IRCore
 {
     class UnityApplication : MonoBehaviour
     {
+        public static UnityApplication Instance { get; private set; }
+
         public static UnityApplication CreateApplicationObject()
         {
             var application = FindObjectOfType<UnityApplication>(true);
@@ -26,6 +30,20 @@ namespace IRCore
         public static event Action Unfocused;
         public static event Action Quited;
 
+        public static Coroutine StartDynamicCoroutine(IEnumerator routine)
+        {
+            return Instance.StartCoroutine(routine);
+        }
+        public static void StopDynamicCoroutine(IEnumerator routine)
+        {
+            Instance.StopCoroutine(routine);
+        }
+        public static void StopDynamicCoroutine(Coroutine routine)
+        {
+            Instance.StopCoroutine(routine);
+        }
+
+        private void Awake() => Instance = this;
         private void Start()
         {
             Log("[Game started " + Application.productName + "]");

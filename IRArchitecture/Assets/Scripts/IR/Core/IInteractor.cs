@@ -1,4 +1,5 @@
 namespace IRCore
 {
-    interface IInteractor : IInitializable { }
+    interface IInteractor { }
+    interface IInteractor<T> : IInteractor where T : IRepository { }
 }

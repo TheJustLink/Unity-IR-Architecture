@@ -1,6 +1,6 @@
 ﻿using IRCore;
 
-class MoneyInteractor : ValueInteractor<int, MoneyRepository>
+class MoneyInteractor : ValueInteractor<MoneyRepository, int>
 {
     public bool CanPay(int price) => Value >= price;
 }

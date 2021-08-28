@@ -10,15 +10,18 @@ namespace IRCore
 {
     static class Game
     {
+        public static readonly SaveSettings SaveSettings = new SaveSettings();
+
         private static readonly InteractorsTable _interactors = new InteractorsTable();
-        private static readonly RepositoriesTable _repositories = new RepositoriesTable(new DefaultSaveKeeper());
+        private static readonly RepositoriesTable _repositories = new RepositoriesTable(SaveSettings);
 
-        public static T GetInteractor<T>() where T : IInteractor, new() => _interactors.Get<T>();
-        public static T GetRepository<T>() where T : IRepository, new() => _repositories.Get<T>();
-
-        public static void ChangeSaveKeeper(ISaveKeeper saveKeeper)
+        public static T GetInteractor<T>() where T : IInteractor, new()
         {
-            _repositories.SaveKeeper = saveKeeper;
+            return _interactors.Get<T>();
+        }
+        public static T AddRepository<T>() where T : IRepository, new()
+        {
+            return _repositories.Get<T>();
         }
 
         public static void SaveGame()

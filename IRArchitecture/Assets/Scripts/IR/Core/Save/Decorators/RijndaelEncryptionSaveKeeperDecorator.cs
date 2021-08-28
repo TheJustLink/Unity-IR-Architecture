@@ -4,24 +4,24 @@ namespace IRCore.Save.Decorators
 {
     class RijndaelEncryptionSaveKeeperDecorator : SaveKeeperDecorator
     {
-        private readonly string _password;
+        private readonly RijndaelEncryption _encryption;
 
-        public RijndaelEncryptionSaveKeeperDecorator(string password, ISaveKeeper saveKeeper)
+        public RijndaelEncryptionSaveKeeperDecorator(ISaveKeeper saveKeeper, string password)
             : base(saveKeeper)
         {
-            _password = password;
+            _encryption = new RijndaelEncryption(password);
         }
 
         public override string Load(string key)
         {
             var encodedJson = base.Load(key);
-            var json = RijndaelEncryption.Decrypt(encodedJson, _password);
+            var json = _encryption.Decrypt(encodedJson);
 
             return json;
         }
         public override void Save(string key, string content)
         {
-            var encodedValue = RijndaelEncryption.Encrypt(content, _password);
+            var encodedValue = _encryption.Encrypt(content);
             base.Save(key, encodedValue);
         }
     }
