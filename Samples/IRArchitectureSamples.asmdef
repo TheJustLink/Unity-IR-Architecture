@@ -1,0 +1,16 @@
+{
+    "name": "IRArchitectureSamples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:beaba8237bcd6594084ade653f73b3d0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,4 +1,0 @@
-namespace IRCore
-{
-    interface IRepository { }
-}

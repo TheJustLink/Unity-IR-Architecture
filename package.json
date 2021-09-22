@@ -1,0 +1,18 @@
+{
+  "name": "com.devlink.ir",
+  "version": "0.5.0",
+  "displayName": "IR Architecture",
+  "description": "Using interactors and repositories in unity.\nAccelerate development for small/middle size games!\n\nStore data in repositories instead of static/singleton (if you use it), and access in interactors.\nYou can also get access to your data in Editor, using ScriptableObjectInteractor!\n\nIR can save/load your data automatically (in Editor too) instead your own hardcode save-system (:",
+  "keywords": [
+    "devlink",
+    "link",
+    "ir",
+    "architecture",
+    "interactor",
+    "repository"
+  ],
+  "author": {
+    "name": "DevLink Games",
+    "email": "devlinkgames@gmail.com"
+  }
+}
