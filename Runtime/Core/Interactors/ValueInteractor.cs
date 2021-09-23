@@ -2,11 +2,10 @@
 
 namespace IR
 {
-    public class ValueInteractor<R, V> : Interactor<R> where R : ValueRepository<V>, new()
+    public class ValueInteractor<R, V> : Interactor<R>, IValueInteractor<V> where R : ValueRepository<V>, new()
     {
-        public event Action<V> Changed;
-
-        public V Value
+        public virtual event Action<V> Changed;
+        public virtual V Value
         {
             get => Repository.Value;
             set
