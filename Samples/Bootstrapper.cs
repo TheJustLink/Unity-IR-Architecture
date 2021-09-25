@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿/*
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -38,3 +37,4 @@ static class Bootstrapper
     }
 #endif
 }
+*/

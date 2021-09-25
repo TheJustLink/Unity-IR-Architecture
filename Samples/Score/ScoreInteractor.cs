@@ -1,7 +1,5 @@
 ﻿using System;
 
-using IR;
-
 namespace IR
 {
     /// <summary>

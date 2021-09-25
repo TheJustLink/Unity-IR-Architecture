@@ -8,4 +8,4 @@ using IR;
 /// Saves works too
 /// </summary>
 [CreateAssetMenu(menuName = "Game/Interactors/Money")]
-class ScriptableMoneyInteractor : ScriptableValueInteractor<MoneyInteractor, MoneyRepository, int> { }
+class ScriptableMoneyInteractor : ScriptableValueInteractor<MoneyInteractor, int> { }

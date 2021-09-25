@@ -1,12 +1,9 @@
 ﻿namespace IR
 {
-    public abstract class Interactor<T> : IInteractor<T> where T : IRepository, new()
+    public abstract class Interactor<R> : IInteractor<R> where R : IRepository, new()
     {
-        protected T Repository;
-
-        public Interactor()
-        {
-            Repository = Game.AddRepository<T>();
-        }
+        protected R Repository
+            => _repository ??= Game.AddRepository<R>();
+        private R _repository;
     }
 }

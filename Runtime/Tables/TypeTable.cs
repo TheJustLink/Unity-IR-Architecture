@@ -24,16 +24,23 @@ namespace IR.Tables
         private U Create<U>() where U : T, new()
         {
             var type = typeof(U);
-            var value = CreateValue<U>();
+            var value = CreateInternal<U>();
 
             _table.Add(type, value);
 
+            TryInitialize(value);
             return value;
         }
 
-        protected virtual U CreateValue<U>() where U : T, new()
+        protected virtual U CreateInternal<U>() where U : T, new()
         {
             return new U();
+        }
+
+        private void TryInitialize<U>(U value) where U : T
+        {
+            if (value is IInitializable initializable)
+                initializable.Initialize();
         }
 
         public IEnumerator<T> GetEnumerator()

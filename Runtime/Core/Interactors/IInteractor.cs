@@ -1,5 +1,5 @@
 namespace IR
 {
     public interface IInteractor { }
-    public interface IInteractor<T> : IInteractor where T : IRepository { }
+    public interface IInteractor<R> : IInteractor where R : IRepository { }
 }

@@ -25,17 +25,19 @@ namespace IR.Tables
             }
         }
 
-        protected override U CreateValue<U>()
+        protected override U CreateInternal<U>()
         {
-            var key = GetKey(typeof(U));
-
-            return _saveSettings.SaveKeeper.Exist(key)
-                ? TryLoad<U>(key)
-                : Create<U>();
+            return TryLoad<U>();
         }
         
-        private T TryLoad<T>(string key) where T : IRepository, new()
+        private T TryLoad<T>() where T : IRepository, new()
         {
+            var key = GetKey(typeof(T));
+            var hasSave = _saveSettings.SaveKeeper.Exist(key);
+
+            if (hasSave == false)
+                return base.CreateInternal<T>();
+
             try
             {
                 return Load<T>(key);
@@ -45,11 +47,7 @@ namespace IR.Tables
                 UnityEngine.Debug.LogError($"Can't load {key}: {exception.Message} => {exception.StackTrace}");
             }
 
-            return Create<T>();
-        }
-        private T Create<T>() where T : IRepository, new()
-        {
-            return new T();
+            return base.CreateInternal<T>();
         }
         private T Load<T>(string key) where T : IRepository
         {

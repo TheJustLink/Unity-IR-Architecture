@@ -4,29 +4,19 @@ using UnityEngine;
 
 namespace IR
 {
-    public abstract class ScriptableValueInteractor<V> : ScriptableObject, IValueInteractor<V>
+    public abstract class ScriptableValueInteractor<I, V> : ScriptableInteractor<I>, IScriptableValueInteractor<I, V>
+        where I : IValueInteractor<V>, new()
     {
-        public abstract event Action<V> Changed;
-
-        public abstract V Value { get; set; }
-    }
-    public class ScriptableValueInteractor<I, R, V> : ScriptableValueInteractor<V> where R : ValueRepository<V>, new() where I : ValueInteractor<R, V>, new()
-    {
-        public override event Action<V> Changed
+        public event Action<V> Changed
         {
             add => Interactor.Changed += value;
             remove => Interactor.Changed -= value;
         }
-
-        public override V Value
+        public V Value
         {
             get => Interactor.Value;
             set => Interactor.Value = value;
         }
-
-        public I Interactor
-            => _interactor ??= Game.GetInteractor<I>();
-        private I _interactor;
 
 #if UNITY_EDITOR
         /// <summary>
