@@ -27,7 +27,8 @@ namespace IR
 
         public static void SaveGame()
         {
-            Debug.Log("[Game saved]");
+            if (UnityApplication.CanLogging)
+                Debug.Log("[Game saved]");
 
             _repositories.Save();
         }
