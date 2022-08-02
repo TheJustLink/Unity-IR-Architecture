@@ -1,6 +1,8 @@
 # Unity-IR-Architecture
 Using interactors and repositories in unity.
 
+**Don't use it, old archive**
+
 Accelerate development for small/middle size games!
 Store data in repositories instead of static/singleton (if you use it), and access in interactors.
 You can also get access to your data in Editor, using ScriptableObjectInteractor!
